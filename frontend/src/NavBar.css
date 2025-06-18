@@ -1,0 +1,26 @@
+.NavBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #f5f1e6, #ffe8d6); 
+  padding: 40px 20px;
+  border-radius: 15px; 
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif; 
+}
+
+.SiteTitle {
+  margin: 0 0 30px 0;
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: 6px;
+  color: #333333; 
+  text-shadow: 1px 1px 4px rgba(255, 192, 203, 0.4); 
+  font-style: normal;
+  transition: color 0.3s ease;
+}
+
+
+

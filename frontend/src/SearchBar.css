@@ -1,0 +1,27 @@
+.InputBar {
+  width: 300px;
+  height: 30px;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  margin-right: 10px;
+  border-color:  #ffe8d6;
+   
+
+}
+
+.SearchButton {
+  height: 36px;
+  border-radius: 10px;
+  margin: 2.5px;
+  border-color:  #ffe8d6;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif; 
+}
+
+.ClearButton {
+  height: 36px;
+  border-radius: 10px;
+  margin: 2.5px;
+  border-color:  #ffe8d6;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif; 
+
+}
