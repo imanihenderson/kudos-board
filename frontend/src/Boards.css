@@ -1,0 +1,13 @@
+.Boards {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 30px; 
+  padding: 40px 20px;
+  background: #fef9f8;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.2);
+  max-width: 1200px;
+  margin: 40px auto; 
+}
+
