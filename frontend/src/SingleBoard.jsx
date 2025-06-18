@@ -6,6 +6,7 @@ const SingleBoard = ({
         image,
         author, 
         category,
+        onDelete
 }) => {
 
     return (
@@ -30,7 +31,7 @@ const SingleBoard = ({
             <button className="ViewBoard">
                 "View Board"
             </button>
-            <button className="DeleteBoard">
+            <button onClick={onDelete} className="DeleteBoard">
                 "Delete Board"
             </button>
 

@@ -44,9 +44,15 @@ const App = () => {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Failed to delete board");
+          throw new Error("Failed to delete board", error);
         }
-        console.log(`Board with id ${id} deleted successfully.`);
+        return response.json()
+
+      })
+      .then((data) => {
+        console.log(`Board with id ${id} deleted successfully.`, data);
+        setBoards((prevBoards) => prevBoards.filter(board => board.id !== id));
+
       })
       .catch((error) => console.error("Error deleting board:", error));
   };
@@ -120,19 +126,29 @@ const App = () => {
 
     const handleSearch = async () => {
       if (searchTerm) {
-        getOneBoard(searchTerm);
-      } else{
+        const filtered = boards.filter(board =>
+          board.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setSearchedBoard(filtered);
+      } else {
         setSearchedBoard(null);
       }
 
     };
-    // calls function for handling search to change UI
+
     handleSearch();
-  }, [searchTerm]);
+  }, [searchTerm], boards);
 
   const handleClear = () => {
     window.location.reload();
   };
+
+  useEffect(() => {
+    const handleDelete = async () => {
+
+    }
+  })
+
 
   return (
     <section className="App">
@@ -147,9 +163,11 @@ const App = () => {
       <NavBar searchTerm={searchTerm} 
       setSearchTerm={setSearchTerm} 
       postBoard={postBoard}
-      onClear={handleClear} />
+      onClear={handleClear} 
+      />
 
-      <Boards boards={ boards }/>
+      <Boards boards={ searchedBoard ?? boards }
+      onDelete={deleteBoard}/>
       <section className="Footer">2025 KudoBoard</section>
     </section>
   );

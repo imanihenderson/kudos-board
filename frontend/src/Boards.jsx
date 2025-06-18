@@ -2,7 +2,7 @@ import "./Boards.css";
 import SingleBoard from "./SingleBoard"
 import {useEffect, useState} from "react";
 
-const Boards = ({ boards }) => {
+const Boards = ({ boards, onDelete }) => {
     if (!boards || boards.length === 0) {
     return <p>Create a Board!</p>;
   }
@@ -17,6 +17,7 @@ const Boards = ({ boards }) => {
                 image={board.img_url}
                 author={board.author}
                 category={board.category}
+                onDelete={onDelete}
             
             />
             ))}
