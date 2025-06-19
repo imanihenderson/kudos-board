@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import NavBar from "./NavBar";
 import Boards from "./Boards";
-import Cards from "./Cards"
+import Cards from "./Cards";
+
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,6 +16,19 @@ const App = () => {
     category: ""
   });
   const [searchedBoard, setSearchedBoard] = useState(null);
+  const [cards, setCards] = useState([]);
+  const [newCardData, setNewCardData] = useState({
+
+    board_id: "",
+    title: "",
+    img_url: "",
+    author: "",
+    category: ""
+  });
+
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => setDarkMode(prev => !prev);
 
 
   const getBoards = () => {
@@ -181,13 +195,13 @@ const App = () => {
       })
       .then((data) => {
         console.log(`Card with id ${id} deleted successfully.`, data);
-        setBoards((prevBoards) => prevBoards.filter(card => card.id !== id));
+        setCards((prevCards) => prevCards.filter(card => card.id !== id));
 
       })
       .catch((error) => console.error("Error deleting card:", error));
   };
   
-  const updateCard = (id) => {
+  const updateCard = (id, updatedData) => {
     fetch(`http://localhost:3000/cards/${id}`, {
       method: "PUT",
       headers: {
@@ -224,7 +238,7 @@ const App = () => {
       })
       .then((data) => {
         // adds new card to card state, updating ui
-        setBoards(prevCards => [...prevCards, data])
+        setCards(prevCards => [...prevCards, data])
 
         //clear form
         setNewCardData({
@@ -235,7 +249,7 @@ const App = () => {
           category: ""
         })
       })
-      .catch((error) => console.error("Error creating board:", error));
+      .catch((error) => console.error("Error creating card:", error));
   };
 
   
@@ -243,13 +257,19 @@ const App = () => {
 
 
   return (
-    <section className="App">
+    <section className={`App ${darkMode ? "dark-mode" : "light-mode"}`}>
 
+    
       <NavBar searchTerm={searchTerm} 
       setSearchTerm={setSearchTerm} 
       postBoard={postBoard}
-      onClear={handleClear} 
+      onClear={handleClear}
+      postCard={postCard} 
+      
       />
+      <button className="darkMode" onClick={toggleDarkMode}>
+        {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+      </button>
       <Routes>
         {/*Home page board list */}
       <Route
@@ -259,7 +279,7 @@ const App = () => {
     
       {/* single board showing cards*/}
       <Route
-        path="/board/:board/:id"
+        path="/board/:boardId"
         element={<Cards />}
         />
       </Routes>

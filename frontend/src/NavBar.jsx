@@ -1,13 +1,15 @@
 import "./NavBar.css";
 import SearchBar from "./SearchBar";
 import SortBy from "./SortBy";
-import CreateNew from "./CreateNew"
+import CreateNewBoard from "./CreateNewBoard"
+import CreateNewCard from "./CreateNewCard"
 
 const NavBar = ({
   searchTerm,
   setSearchTerm,
   onClear,
-  postBoard
+  postBoard,
+  postCard
 
 }) => {
   return (
@@ -24,8 +26,12 @@ const NavBar = ({
         <SortBy 
         />
 
-        <CreateNew 
+        <CreateNewBoard 
         postBoard={postBoard}
+        />
+
+        <CreateNewCard
+        postCard={postCard}
         />
 
       </section>

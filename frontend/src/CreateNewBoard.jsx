@@ -1,7 +1,7 @@
-import "./CreateNew.css"
+import "./CreateNewBoard.css"
 import { useEffect, useState } from 'react'
 
-const CreateNew = ({postBoard}) => {
+const CreateNewBoard = ({postBoard}) => {
     const [showModal, setShowModal] = useState(false);
     const [newBoardData, setNewBoardData] = useState({
         title: "",
@@ -30,7 +30,7 @@ const CreateNew = ({postBoard}) => {
     };
 
     return (
-        <section className="CreateNew">
+        <section className="CreateNewBoard">
             <button className="createButton" 
             onClick={() => setShowModal(true)}>
                 Create New Board
@@ -78,4 +78,4 @@ const CreateNew = ({postBoard}) => {
 
 }
 
-export default CreateNew;
+export default CreateNewBoard;

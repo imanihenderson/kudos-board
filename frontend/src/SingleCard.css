@@ -1,0 +1,54 @@
+.SingleBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 250px;
+  flex: 1 1 calc(25% - 20px);
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 30px;
+  height: 400px;
+  max-width: 300px;
+  width: 100%;
+  background: #fff8f5; 
+  box-shadow: 0 0px 20px rgba(255, 182, 193, 0.3); 
+  border-radius: 15px; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif; 
+}
+
+
+.DeleteBoard {
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif; 
+  height: 30px;
+  margin: 10px;
+  border-radius: 5px;
+  border-color: #fef9f8;
+
+}
+
+.ViewBoard {
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif; 
+  height: 30px;
+  margin: 10px;
+  border-radius: 5px;
+  border-color:#fef9f8;
+  
+}
+
+.BoardImg {
+  width: 80%;
+  border-radius: 10px;
+  height: auto;
+}
+
+.BoardTitle{
+  margin-top: 8px;
+  margin-bottom: 1px;
+}
+
+.BoardCateg {
+  margin-top: 0px;
+}

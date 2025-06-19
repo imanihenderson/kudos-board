@@ -1,8 +1,14 @@
 import "./Boards.css";
-import SingleBoard from "./SingleBoard"
+import SingleBoard from "./SingleBoard";
 import {useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 const Boards = ({ boards, onDelete }) => {
+    const navigate = useNavigate();
+
+    const handleBoardClick = (id) => {
+        navigate(`/board/${id}`);
+    }
     if (!boards || boards.length === 0) {
     return <p>Create a Board!</p>;
   }
@@ -19,6 +25,7 @@ const Boards = ({ boards, onDelete }) => {
                 author={board.author}
                 category={board.category}
                 onDelete={onDelete}
+                onClick={handleBoardClick}
             
             />
             ))}
