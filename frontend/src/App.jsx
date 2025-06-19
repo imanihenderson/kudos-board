@@ -1,8 +1,9 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./App.css";
 import NavBar from "./NavBar";
 import Boards from "./Boards";
+import Cards from "./Cards"
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -143,31 +144,125 @@ const App = () => {
     window.location.reload();
   };
 
-  useEffect(() => {
-    const handleDelete = async () => {
+  // Beginning of card functionality
 
-    }
-  })
+  const getCards = () => {
+    fetch("http://localhost:3000/cards")
+      .then((response) => response.json())
+      .then((data) => setCards(data))
+      .catch((error) => console.error("Error fetching cards:", error));
+  };
+
+ const getOneCard = (id) => {
+    fetch(`http://localhost:3000/cards/${id}`)
+      .then((res) => {
+      if (!res.ok) throw new Error("Card not found");
+      return res.json()
+      })
+      .then((data) => {
+          console.log(data)
+      }) 
+      .catch((error) => {
+        console.error("Error fetching card:", error);
+      });
+
+    };
+
+  const deleteCard = (id) => {
+    fetch(`http://localhost:3000/cards/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to delete card", error);
+        }
+        return response.json()
+
+      })
+      .then((data) => {
+        console.log(`Card with id ${id} deleted successfully.`, data);
+        setBoards((prevBoards) => prevBoards.filter(card => card.id !== id));
+
+      })
+      .catch((error) => console.error("Error deleting card:", error));
+  };
+  
+  const updateCard = (id) => {
+    fetch(`http://localhost:3000/cards/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to update card");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Updated card:", data);
+        // update UI later
+      })
+      .catch((error) => console.error("Error updating card:", error));
+  };
+
+  const postCard = (newCardData) => {
+    fetch("http://localhost:3000/cards", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCardData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to create card");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // adds new card to card state, updating ui
+        setBoards(prevCards => [...prevCards, data])
+
+        //clear form
+        setNewCardData({
+          board_id: "",
+          title: "",
+          img_url: "",
+          author: "",
+          category: ""
+        })
+      })
+      .catch((error) => console.error("Error creating board:", error));
+  };
+
+  
+
 
 
   return (
     <section className="App">
-      {/* <Routes>
-        <Route path="/" element={<boards />}
-        />
 
-        <Route path="*" element={<NoMatch />} 
-        /> 
-
-      </Routes> */}
       <NavBar searchTerm={searchTerm} 
       setSearchTerm={setSearchTerm} 
       postBoard={postBoard}
       onClear={handleClear} 
       />
-
-      <Boards boards={ searchedBoard ?? boards }
-      onDelete={deleteBoard}/>
+      <Routes>
+        {/*Home page board list */}
+      <Route
+        path="/"
+        element={<Boards boards={searchedBoard ?? boards} onDelete={deleteBoard} />}
+  />
+    
+      {/* single board showing cards*/}
+      <Route
+        path="/board/:board/:id"
+        element={<Cards />}
+        />
+      </Routes>
       <section className="Footer">2025 KudoBoard</section>
     </section>
   );

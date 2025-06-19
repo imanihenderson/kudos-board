@@ -13,6 +13,7 @@ const Boards = ({ boards, onDelete }) => {
             {boards.map((board) => (
                 <SingleBoard
                 key={board.id}
+                id={board.id}
                 Title={board.title}
                 image={board.img_url}
                 author={board.author}

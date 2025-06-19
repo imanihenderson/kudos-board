@@ -1,7 +1,9 @@
 import "./SingleBoard.css";
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 const SingleBoard = ({
+        id,
         Title,
         image,
         author, 
@@ -28,10 +30,12 @@ const SingleBoard = ({
         </section>
 
         <section className="BoardOptions">
+            <Link to={`/board/${id}`}>
             <button className="ViewBoard">
                 "View Board"
             </button>
-            <button onClick={onDelete} className="DeleteBoard">
+            </Link>
+            <button onClick={() => onDelete(id)} className="DeleteBoard">
                 "Delete Board"
             </button>
 
