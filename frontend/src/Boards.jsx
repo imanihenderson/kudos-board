@@ -3,7 +3,7 @@ import SingleBoard from "./SingleBoard";
 import {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
-const Boards = ({ boards, onDelete }) => {
+const Boards = ({ boards, onDelete, postCard }) => {
     const navigate = useNavigate();
 
     const handleBoardClick = (id) => {
@@ -26,6 +26,8 @@ const Boards = ({ boards, onDelete }) => {
                 category={board.category}
                 onDelete={onDelete}
                 onClick={handleBoardClick}
+                postCard={postCard}
+                boardId={board.id}
             
             />
             ))}

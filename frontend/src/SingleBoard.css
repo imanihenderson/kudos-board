@@ -8,7 +8,7 @@
   box-sizing: border-box;
   padding: 20px;
   margin: 30px;
-  height: 400px;
+  height: 430px;
   max-width: 300px;
   width: 100%;
   background: #fff8f5; 
@@ -17,6 +17,13 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif; 
+}
+
+.BoardOptions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: -12px;
 }
 
 
@@ -37,6 +44,7 @@
   border-color:#fef9f8;
   
 }
+
 
 .BoardImg {
   width: 80%;

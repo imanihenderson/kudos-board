@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const boardsRouter = require('./routes/boards')
+const cardsRouter = require('./routes/cards')
 const cors = require('cors')
 
 //middleware
@@ -13,6 +14,9 @@ app.use(cors())
 
 // board routes
 app.use('/boards', boardsRouter)
+
+// card routes 
+app.use('/cards', cardsRouter)
 
 // main route
 

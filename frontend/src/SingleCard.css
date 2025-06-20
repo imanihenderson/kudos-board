@@ -1,4 +1,4 @@
-.SingleBoard {
+.SingleCard {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -20,7 +20,7 @@
 }
 
 
-.DeleteBoard {
+.DeleteCard {
   font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif; 
   height: 30px;
   margin: 10px;
@@ -29,26 +29,22 @@
 
 }
 
-.ViewBoard {
-  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif; 
-  height: 30px;
-  margin: 10px;
-  border-radius: 5px;
-  border-color:#fef9f8;
-  
-}
 
-.BoardImg {
+.CardImg {
   width: 80%;
   border-radius: 10px;
   height: auto;
 }
 
-.BoardTitle{
+.CardTitle{
   margin-top: 8px;
   margin-bottom: 1px;
 }
 
-.BoardCateg {
+.CardCateg {
   margin-top: 0px;
+}
+
+.CardUpvotes{
+    border-color: black;
 }

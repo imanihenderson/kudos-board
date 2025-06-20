@@ -1,8 +1,8 @@
 import "./SingleCard.css";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-const SingleCard = ({ id, board_id, Title, image, upvotes, author, onDelete, category }) => {
+const SingleCard = ({ id, board_id, Title, image, author, onDelete, category }) => {
+  const [upvotes, setUpvotes] = useState(0);
   return (
     <section className="SingleCard">
       <img
@@ -22,13 +22,14 @@ const SingleCard = ({ id, board_id, Title, image, upvotes, author, onDelete, cat
       </section>
 
       <section className="CardOptions">
-        <Link to={`/board/${id}`}>
-          <button className="ViewCard">View Card</button>
-        </Link>
         <button onClick={() => onDelete(id)} className="DeleteCard">
           Delete Card
         </button>
       </section>
+
+        <section className="CardUpvotes">
+            <button onClick={() => setUpvotes(prev => prev + 1)}>Upvotes: {upvotes}  ⇧ </button>
+        </section>
     </section>
   );
 };

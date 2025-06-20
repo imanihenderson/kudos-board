@@ -1,21 +1,12 @@
 import "./Cards.css"
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import SingleCard from "./SingleCard";
+import CreateNewCard from "./CreateNewCard";
+import { useParams } from "react-router-dom";
 
-const Cards = () => {
+const Cards = ({ cards, onDelete, postCard }) => {
     const { boardId } = useParams();
-    const [cards, setCards] = useState([]);
-
-    useEffect(() => {
-    fetch(`/cards/board/${boardId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCards(data);
-      })
-      .catch((err) => console.error("Error fetching cards:", err));
-  }, [boardId]);
-
+  
+  
   if (!cards || cards.length === 0) {
     return <p>No cards in this board!</p>;
     
@@ -23,15 +14,18 @@ const Cards = () => {
 
     return (
         <section className="Cards">
+            <CreateNewCard postCard={postCard} />
          
             {cards.map((card) => (
                 <SingleCard
                 key={card.id}
+                id={card.id}
                 board_id={card.board_id}
                 Title={card.title}
                 image={card.img_url}
                 author={card.author}
                 category={card.category}
+                upvotes={card.upvotes}
                 onDelete={onDelete}
             
             />

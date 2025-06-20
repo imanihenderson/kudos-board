@@ -1,7 +1,8 @@
 import "./SingleBoard.css";
 import { Link } from "react-router-dom";
+import CreateNewCard from "./CreateNewCard";
 
-const SingleBoard = ({ id, Title, image, author, category, onDelete, onClick }) => {
+const SingleBoard = ({ id, Title, image, author, category, onDelete, onClick , postCard}) => {
   return (
     <section className="SingleBoard">
       <img
@@ -20,13 +21,16 @@ const SingleBoard = ({ id, Title, image, author, category, onDelete, onClick }) 
       </section>
 
       <section className="BoardOptions">
-        <Link to={`/board/:${id}`}>
-          <button className="ViewBoard">View Board</button>
+        <Link to={`/board/${id}`}>
+          <button className="ViewBoard">View</button>
         </Link>
         <button onClick={() => onDelete(id)} className="DeleteBoard">
-          Delete Board
+          Delete 
         </button>
-      </section>
+        </section>
+
+        <CreateNewCard class="createNew" postCard={postCard} board_id={id}/>
+      
     </section>
   );
 };
