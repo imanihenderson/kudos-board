@@ -1,7 +1,7 @@
-import "./CreateNew.css"
+import "./CreateNewBoard.css"
 import { useEffect, useState } from 'react'
 
-const CreateNew = ({postBoard}) => {
+const CreateNewBoard = ({postBoard}) => {
     const [showModal, setShowModal] = useState(false);
     const [newBoardData, setNewBoardData] = useState({
         title: "",
@@ -30,7 +30,7 @@ const CreateNew = ({postBoard}) => {
     };
 
     return (
-        <section className="CreateNew">
+        <section className="CreateNewBoard">
             <button className="createButton" 
             onClick={() => setShowModal(true)}>
                 Create New Board
@@ -40,6 +40,7 @@ const CreateNew = ({postBoard}) => {
                     <div className="modal">
                         <form onSubmit={handleSubmit} className="modalForm">
                         <input
+                        className="inputTitle"
                          name="title"
                          value={newBoardData.title}
                          onChange={handleChange}
@@ -47,23 +48,30 @@ const CreateNew = ({postBoard}) => {
                          required
                        />
                        <input
+                        className="inputImage"
                         name="img_url"
                         value={newBoardData.img_url}
                         onChange={handleChange}
                         placeholder="Image URL"
                         />
                        <input
+                        className="inputAuthor"
                         name="author"
                         value={newBoardData.author}
                         onChange={handleChange}
                         placeholder="Author"
           />
-                        <input
+                        <select
                         name="category"
                         value={newBoardData.category}
                         onChange={handleChange}
-                        placeholder="Category"
-                        />
+                        >
+                            <option value="">Select a category</option>
+                            <option value="Celebration">Celebration</option>
+                            <option value="Thank You">Thank You</option>
+                            <option value="Inspiration">Inspiration</option>
+
+                        </select>
                         <button type="submit">Submit</button>
                         <button
                             type="button"
@@ -78,4 +86,4 @@ const CreateNew = ({postBoard}) => {
 
 }
 
-export default CreateNew;
+export default CreateNewBoard;

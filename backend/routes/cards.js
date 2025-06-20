@@ -3,6 +3,24 @@ const cards = express.Router();
 const { PrismaClient } = require("../generated/prisma");
 const prisma = new PrismaClient();
 
+//gets cards for a board 
+cards.get("/board/:boardId", async (req, res) => {
+  const { boardId } = req.params;
+
+  try {
+    const boardCards = await prisma.cards.findMany({
+      where: { card_id: parseInt(board_id) }, 
+    });
+
+    res.json(boardCards);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch cards for the board" });
+  }
+});
+
+
+
 cards.get("/", async (req, res) => {
   const cardsList = await prisma.cards.findMany();
   res.json(cardsList);
@@ -26,15 +44,15 @@ cards.get("/:id", async (req, res) => {
 });
 
 cards.post("/", async (req, res) => {
-  const { card_id, title, img_url, upvotes, author } = req.body;
+  const { board_id, title, img_url, upvotes, author } = req.body;
 
   try {
     const newCard = await prisma.cards.create({
       data: {
-        card_id,
+        board_id: parseInt(board_id),
         title,
         img_url,
-        upvotes,
+        upvotes: parseInt(upvotes),
         author,
       },
     });

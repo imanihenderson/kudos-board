@@ -1,10 +1,20 @@
+
 .App {
   text-align: center;
-  background: #fef9f8;
 }
 
-.App-header {
+.light-mode {
   background: #fef9f8;
+  color: #000;
+}
+
+.dark-mode {
+  background: #121212;
+  color: #f1f1f1;
+}
+
+/* Header */
+.App-header {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -12,7 +22,25 @@
   padding: 20px;
 }
 
-.Footer {
+.light-mode .App-header,
+.light-mode .Footer {
   background: #fef9f8;
+}
+
+.dark-mode .App-header,
+.dark-mode .Footer {
+  background: #1e1e1e;
+}
+
+/* Footer */
+.Footer {
   padding: 50px;
+}
+
+.darkMode {
+  height: 36px;
+  border-radius: 10px;
+  margin-top:15px;
+  border-color:  #ffe8d6;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, sans-serif;
 }
